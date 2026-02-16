@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body{
+  margin:0;
+  background:#0b1220;
+  font-family:'Segoe UI',sans-serif;
+  display:flex;
+  justify-content:center;
+}
+
+.app{
+  width:100%;
+  max-width:430px;
+  min-height:100vh;
+  background:linear-gradient(180deg,#0f172a,#0b1220);
+  color:white;
+}
+
+.header{
+  padding:18px;
+  text-align:center;
+  font-weight:700;
+  background:#0f172a;
+  border-bottom:1px solid #1e293b;
+}
+
+.page{
+  display:none;
+  padding:20px 15px 100px 15px;
+}
+
+/* ===== DASHBOARD ===== */
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#14213d,#0b1220 60%);
+  font-family:'Segoe UI',sans-serif;
+  display:flex;
+  justify-content:center;
+}
+
+.app{
+  width:100%;
+  max-width:430px;
+  min-height:100vh;
+  padding-bottom:40px;
+}
+
+.header{
+  padding:22px;
+  text-align:center;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:1px;
+  background:transparent;
+  color:white;
+}
+
+/* ===== PREMIUM CARD STYLE ===== */
+
+.menu-card{
+  display:flex;
+  align-items:center;
+  padding:28px;
+  margin:25px 18px;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.25s;
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.55),
+    inset 0 2px 6px rgba(255,255,255,0.2);
+}
+
+.menu-card:active{
+  transform:scale(0.97);
+}
+
+.icon{
+  font-size:48px;
+  margin-right:20px;
+}
+
+.title{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:0.5px;
+}
+
+.subtitle{
+  font-size:15px;
+  font-weight:600;
+  margin-top:6px;
+}
+
+.desc{
+  font-size:13px;
+  opacity:0.95;
+  margin-top:8px;
+}
+
+/* ===== GRADIENT SESUAI GAMBAR 1 ===== */
+
+.green{
+  background:linear-gradient(145deg,#7ed957,#1c8b38);
+}
+
+.blue{
+  background:linear-gradient(145deg,#5fa8ff,#1746b8);
+}
+
+.orange{
+  background:linear-gradient(145deg,#ff9d2f,#d9480f);
+}
+
+
+/* ===== FORM ===== */
+
+.card{
+  background:#1e293b;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+label{
+  font-size:12px;
+  margin-top:12px;
+  display:block;
+  color:#cbd5e1;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#0f172a;
+  color:white;
+  font-size:14px;
+  box-sizing:border-box;
+}
+
+textarea{ min-height:70px; resize:none; }
+
+.upload-box{
+  border:2px dashed #334155;
+  border-radius:12px;
+  padding:25px;
+  text-align:center;
+  margin-top:8px;
+  color:#64748b;
+  cursor:pointer;
+}
+
+.preview-item{ position:relative; margin-top:10px; }
+
+.preview-item img{
+  width:100%;
+  border-radius:12px;
+}
+
+.delete-btn{
+  position:absolute;
+  top:5px;
+  right:5px;
+  background:red;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:25px;
+  height:25px;
+  cursor:pointer;
+}
+
+button.submit{
+  width:100%;
+  padding:15px;
+  margin-top:18px;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(90deg,#22c55e,#16a34a);
+  color:white;
+}
+
+.loading{
+  display:none;
+  text-align:center;
+  margin-top:10px;
+  color:#22c55e;
+}
+
+.back-btn{
+  margin-bottom:15px;
+  background:#334155;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  color:white;
+  cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+
+<div class="app">
+<div class="header">🛠 SISTEM MONITORING UNIT</div>
+
+<!-- ================= DASHBOARD ================= -->
+<div id="dashboard" class="page" style="display:block">
+
+<div class="menu-card green" onclick="openPage('patrol')">
+  <div class="icon">🛠️</div>
+  <div>
+    <div class="title">PATROL CHECK</div>
+    <div class="subtitle">Catatan Hasil Patroli</div>
+    <div class="desc">Isi laporan hasil pemeriksaan lapangan</div>
+  </div>
+</div>
+
+<div class="menu-card blue" onclick="openPage('dok')">
+  <div class="icon">📷</div>
+  <div>
+    <div class="title">DOKUMENTASI KEGIATAN ADMIN</div>
+    <div class="subtitle">Foto & Dokumentasi</div>
+    <div class="desc">Simpan bukti kegiatan administratif</div>
+  </div>
+</div>
+
+<div class="menu-card orange" onclick="openPage('absen')">
+  <div class="icon">🦺</div>
+  <div>
+    <div class="title">ABSENSI SAFETY BRIEFING</div>
+    <div class="subtitle">Presensi Briefing Safety</div>
+    <div class="desc">Rekam kehadiran safety briefing</div>
+  </div>
+</div>
+
+</div>
+
+<!-- ================= PATROL ================= -->
+<div id="patrol" class="page">
+<button class="back-btn" onclick="backDashboard()">← Kembali</button>
+<div class="card">
+
+<label>Tanggal</label>
+<input type="date" id="p_tanggal">
+
+<label>Peralatan</label>
+<input id="p_peralatan">
+
+<label>Aktifitas</label>
+<input id="p_aktifitas">
+
+<label>Temuan</label>
+<textarea id="p_temuan"></textarea>
+
+<label>Rekomendasi</label>
+<textarea id="p_rekomendasi"></textarea>
+
+<label>Status</label>
+<select id="p_status">
+<option>OPEN</option>
+<option>CLOSE</option>
+</select>
+
+<label>Keterangan</label>
+<input id="p_keterangan">
+
+<label>PIC</label>
+<input id="p_pic">
+
+<label>Upload Foto</label>
+<input type="file" id="fotoPatrol" multiple accept="image/*" hidden>
+<div class="upload-box" onclick="fotoPatrol.click()">+ Tambah Foto</div>
+<div id="previewPatrol"></div>
+
+<button class="submit" onclick="savePatrol()">SIMPAN PATROL</button>
+<div class="loading" id="loadingPatrol">Uploading...</div>
+
+</div>
+</div>
+
+<!-- ================= DOKUMENTASI ================= -->
+<div id="dok" class="page">
+<button class="back-btn" onclick="backDashboard()">← Kembali</button>
+<div class="card">
+
+<label>Tanggal</label>
+<input type="date" id="d_tanggal">
+
+<label>Jenis</label>
+<input id="d_jenis">
+
+<label>Aktifitas</label>
+<input id="d_aktifitas">
+
+<label>Peserta</label>
+<input id="d_peserta">
+
+<label>Tempat</label>
+<input id="d_tempat">
+
+<label>Upload Foto</label>
+<input type="file" id="fotoDok" multiple accept="image/*" hidden>
+<div class="upload-box" onclick="fotoDok.click()">+ Tambah Foto</div>
+<div id="previewDok"></div>
+
+<button class="submit" onclick="saveDok()">SIMPAN DOKUMENTASI</button>
+<div class="loading" id="loadingDok">Uploading...</div>
+
+</div>
+</div>
+
+<!-- ================= ABSENSI ================= -->
+<div id="absen" class="page">
+<button class="back-btn" onclick="backDashboard()">← Kembali</button>
+<div class="card">
+
+<label>Nama</label>
+<input id="a_nama">
+
+<label>Tanggal</label>
+<input type="date" id="a_tanggal">
+
+<label>Koordinat</label>
+<input id="a_map" readonly>
+
+<label>Upload Foto</label>
+<input type="file" id="fotoAbsen" multiple accept="image/*" hidden>
+<div class="upload-box" onclick="fotoAbsen.click()">+ Tambah Foto</div>
+<div id="previewAbsen"></div>
+
+<button class="submit" onclick="saveAbsen()">SIMPAN ABSENSI</button>
+<div class="loading" id="loadingAbsen">Uploading...</div>
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+let patrolImgs=[], dokImgs=[], absenImgs=[];
+
+/* NAVIGATION */
+function openPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+  document.getElementById(id).style.display="block";
+}
+
+function backDashboard(){
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+  document.getElementById("dashboard").style.display="block";
+}
+
+/* IMAGE COMPRESS */
+function compress(file,callback){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.src=e.target.result;
+    img.onload=()=>{
+      const canvas=document.createElement("canvas");
+      const ctx=canvas.getContext("2d");
+      const max=800;
+      const scale=max/img.width;
+      canvas.width=max;
+      canvas.height=img.height*scale;
+      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+      callback(canvas.toDataURL("image/jpeg",0.6).split(",")[1]);
+    }
+  }
+  reader.readAsDataURL(file);
+}
+
+/* HANDLE UPLOAD */
+function handleUpload(inputId,array,previewId){
+  document.getElementById(inputId).addEventListener("change",function(){
+    [...this.files].forEach(file=>{
+      compress(file,base64=>{
+        array.push(base64);
+        renderPreview(array,previewId);
+      });
+    });
+    this.value="";
+  });
+}
+
+function renderPreview(array,previewId){
+  const container=document.getElementById(previewId);
+  container.innerHTML="";
+  array.forEach((img,i)=>{
+    const div=document.createElement("div");
+    div.className="preview-item";
+    const image=document.createElement("img");
+    image.src="data:image/jpeg;base64,"+img;
+    const del=document.createElement("button");
+    del.innerHTML="✕";
+    del.className="delete-btn";
+    del.onclick=()=>{
+      array.splice(i,1);
+      renderPreview(array,previewId);
+    };
+    div.appendChild(image);
+    div.appendChild(del);
+    container.appendChild(div);
+  });
+}
+
+handleUpload("fotoPatrol",patrolImgs,"previewPatrol");
+handleUpload("fotoDok",dokImgs,"previewDok");
+handleUpload("fotoAbsen",absenImgs,"previewAbsen");
+
+/* SAVE FUNCTIONS */
+function savePatrol(){
+  if(patrolImgs.length==0){ alert("Upload foto dulu"); return; }
+  document.getElementById("loadingPatrol").style.display="block";
+
+  google.script.run.withSuccessHandler(function(msg){
+    alert(msg);
+    patrolImgs=[];
+    document.getElementById("previewPatrol").innerHTML="";
+    document.querySelectorAll("#patrol input,#patrol textarea").forEach(e=>e.value="");
+    backDashboard();
+    document.getElementById("loadingPatrol").style.display="none";
+  }).simpanPatrol({
+    tanggal:p_tanggal.value,
+    peralatan:p_peralatan.value,
+    aktifitas:p_aktifitas.value,
+    temuan:p_temuan.value,
+    rekomendasi:p_rekomendasi.value,
+    status:p_status.value,
+    keterangan:p_keterangan.value,
+    pic:p_pic.value,
+    foto:patrolImgs
+  });
+}
+
+function saveDok(){
+  if(dokImgs.length==0){ alert("Upload foto dulu"); return; }
+  document.getElementById("loadingDok").style.display="block";
+
+  google.script.run.withSuccessHandler(function(msg){
+    alert(msg);
+    dokImgs=[];
+    document.getElementById("previewDok").innerHTML="";
+    document.querySelectorAll("#dok input").forEach(e=>e.value="");
+    backDashboard();
+    document.getElementById("loadingDok").style.display="none";
+  }).simpanDok({
+    tanggal:d_tanggal.value,
+    jenis:d_jenis.value,
+    aktifitas:d_aktifitas.value,
+    peserta:d_peserta.value,
+    tempat:d_tempat.value,
+    foto:dokImgs
+  });
+}
+
+function saveAbsen(){
+  if(absenImgs.length==0){ alert("Upload foto dulu"); return; }
+  document.getElementById("loadingAbsen").style.display="block";
+
+  google.script.run.withSuccessHandler(function(msg){
+    alert(msg);
+    absenImgs=[];
+    document.getElementById("previewAbsen").innerHTML="";
+    document.querySelectorAll("#absen input").forEach(e=>e.value="");
+    backDashboard();
+    document.getElementById("loadingAbsen").style.display="none";
+  }).simpanAbsensi({
+    nama:a_nama.value,
+    tanggal:a_tanggal.value,
+    map:a_map.value,
+    foto:absenImgs
+  });
+}
+
+/* AUTO GPS */
+navigator.geolocation?.getCurrentPosition(pos=>{
+  a_map.value=pos.coords.latitude+", "+pos.coords.longitude;
+});
+
+</script>
+
+</body>
+</html>
